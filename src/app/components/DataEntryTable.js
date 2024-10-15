@@ -115,7 +115,7 @@ export default function DataEntryTable() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
-      <header className="p-4 text-white bg-blue-600">
+      <header className="p-1 text-white bg-blue-600">
         <div className="container flex items-center justify-between mx-auto"></div>
       </header>
       <h1 className="text-xl font-bold">Data Entry Sheet</h1>
@@ -199,7 +199,7 @@ export default function DataEntryTable() {
                           type="text"
                           value={row.name}
                           onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
-                          className="p-1 border w-full"
+                          className="p-1 border w-24"
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
@@ -217,7 +217,7 @@ export default function DataEntryTable() {
                           min="1"
                           max="22"
                           onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
-                          className="p-1 border w-full"
+                          className="p-1 border w-12"
                         />
                       </td>
                       <td className="p-2 border border-gray-300">

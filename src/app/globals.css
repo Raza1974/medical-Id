@@ -32,6 +32,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
+  
   /* ... the rest of the parentContainer styles ... */
 }
 

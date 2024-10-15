@@ -3,9 +3,10 @@
 export default function Home() {
   return (
     
-     
-    <div className="mb-4 text-center childContainerInformation bounce-in-right">
+    
   
+    <div className="mb-4 text-center childContainerInformation bounce-in-right ">
+   
    
       <div className="imageContainerInformation">
             <img
