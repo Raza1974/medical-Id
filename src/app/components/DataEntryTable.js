@@ -92,14 +92,14 @@ export default function DataEntryTable() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-100bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
       <header className="p-4 text-white bg-blue-600">
         <div className="container flex items-center justify-between mx-auto">
-         </div>
+        </div>
       </header>
-      <h1 className="text-2xl font-bold">Data Entry Sheet</h1>
-       
-      <main className="container flex-grow mx-auto my-8">
+      <h1 className="text-xl font-bold">Data Entry Sheet</h1>
+        
+      <main className="container flex-grow px-4 mx-auto my-8">
         <style jsx>{`
           @media print {
             @page {
@@ -117,139 +117,142 @@ export default function DataEntryTable() {
           }
         `}</style>
 
-        <table className="w-full border border-collapse border-gray-300 table-auto">
-          <thead>
-            <tr>
-              <th className="p-2 border border-gray-300">Sr.NO.</th>
-              <th className="p-2 border border-gray-300">Date of bill</th>
-              <th className="p-2 border border-gray-300">Date of receiving</th>
-              <th className="p-2 border border-gray-300">Time Barred</th>
-              <th className="p-2 border border-gray-300">Name</th>
-              <th className="p-2 border border-gray-300">Designation</th>
-              <th className="p-2 border border-gray-300">BPS</th>
-              <th className="p-2 border border-gray-300">Department</th>
-              <th className="p-2 border border-gray-300">Relation</th>
-              <th className="p-2 border border-gray-300">Diseases</th>
-              <th className="p-2 border border-gray-300">Demand</th>
-              <th className="p-2 border border-gray-300">May Approved</th>
-              <th className="p-2 border border-gray-300">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.id}>
-                <td className="p-2 border border-gray-300">{row.id}</td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="date"
-                    value={row.billDate}
-                    onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="date"
-                    value={row.receiveDate}
-                    onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">{row.timeBarred}</td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.name}
-                    onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.designation}
-                    onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="number"
-                    value={row.bps}
-                    onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.department}
-                    onChange={(e) => handleInputChange(row.id, 'department', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.relation}
-                    onChange={(e) => handleInputChange(row.id, 'relation', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.diseases}
-                    onChange={(e) => handleInputChange(row.id, 'diseases', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.demand}
-                    onChange={(e) => handleInputChange(row.id, 'demand', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <input
-                    type="text"
-                    value={row.mayApproved}
-                    onChange={(e) => handleInputChange(row.id, 'mayApproved', e.target.value)}
-                    className="p-1 border"
-                  />
-                </td>
-                <td className="p-2 border border-gray-300">
-                  <button
-                    onClick={() => removeRow(row.id)}
-                    className="p-1 text-red-600 border border-red-600"
-                  >
-                    Remove
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full border border-collapse border-gray-300 table-auto">
+            <thead>
+              <tr>
+                <th className="p-2 border border-gray-300">Sr.NO.</th>
+                <th className="p-2 border border-gray-300">Date of bill</th>
+                <th className="p-2 border border-gray-300">Date of receiving</th>
+                <th className="p-2 border border-gray-300">Time Barred</th>
+                <th className="p-2 border border-gray-300">Name</th>
+                <th className="p-2 border border-gray-300">Designation</th>
+                <th className="p-2 border border-gray-300">BPS</th>
+                <th className="p-2 border border-gray-300">Department</th>
+                <th className="p-2 border border-gray-300">Relation</th>
+                <th className="p-2 border border-gray-300">Diseases</th>
+                <th className="p-2 border border-gray-300">Demand</th>
+                <th className="p-2 border border-gray-300">May Approved</th>
+                <th className="p-2 border border-gray-300">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex justify-between mt-4">
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr key={row.id}>
+                  <td className="p-2 border border-gray-300">{row.id}</td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="date"
+                      value={row.billDate}
+                      onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="date"
+                      value={row.receiveDate}
+                      onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">{row.timeBarred}</td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.name}
+                      onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.designation}
+                      onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="number"
+                      value={row.bps}
+                      onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.department}
+                      onChange={(e) => handleInputChange(row.id, 'department', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.relation}
+                      onChange={(e) => handleInputChange(row.id, 'relation', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.diseases}
+                      onChange={(e) => handleInputChange(row.id, 'diseases', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.demand}
+                      onChange={(e) => handleInputChange(row.id, 'demand', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <input
+                      type="text"
+                      value={row.mayApproved}
+                      onChange={(e) => handleInputChange(row.id, 'mayApproved', e.target.value)}
+                      className="p-1 border w-full"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    <button
+                      className="px-2 py-1 text-white bg-red-500 rounded"
+                      onClick={() => removeRow(row.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-4 space-x-4">
           <button
+            className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
             onClick={addRow}
-            className="p-2 text-white bg-green-600 hover:bg-green-700"
           >
             Add Row
           </button>
           <button
-            onClick={printSheet}
-            className="p-2 text-white bg-blue-600 hover:bg-blue-700"
-          >
-            Print
-          </button>
-          <button
+            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
             onClick={exportToCSV}
-            className="p-2 text-white bg-purple-600 hover:bg-purple-700"
           >
             Export to CSV
+          </button>
+          <button
+            className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600"
+            onClick={printSheet}
+          >
+            Print
           </button>
         </div>
       </main>

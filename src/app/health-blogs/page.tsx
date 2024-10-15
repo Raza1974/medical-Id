@@ -1,30 +1,140 @@
-import Link from 'next/link'; // Ensure you're importing the Link component
+export default function FAQ() {
+    return (
+        <div className="parentContainer">
 
-export default function healthblog() {
-  return (
-    <section className="flex items-center justify-center min-h-screen p-16 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
-    <div>
-        <h1 className="mb-4 text-3xl font-extrabold text-gray-900 "></h1>
-        
-        <div className="mb-4 text-center childContainer bounce-in-right">
-          <div className="imageContainer">
-            <img
-              src="/image/health tips.jpg"      
-              alt="Heart Health"
-              className="object-cover w-full h-40"
-            />
-          </div>
-          <h2 className="text-xl font-semibold title">Eat Healthy</h2>
-          <p className="description">
-            You can help prevent  disease by following a Eat-healthy lifestyle.art.
-          </p>
-          <Link href="/blogs/health-1">
-            <button className="px-4 py-2 text-white transition bg-blue-500 rounded readMore hover:bg-blue-600">
-              Read More
-            </button>
-          </Link>
+            {/* Fitness Section */}
+            <div className="childContainer bounce-in-right">
+                <div className="imageContainer">
+                    <img
+                        src="/image/fitness.png"
+                        alt="Health Fitness"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h6 className="title">Fitness</h6>
+                <p className="description">
+                    Fitness and Exercise: Health Benefits, How to Get Started.
+                </p>
+                <a href="https://www.everydayhealth.com/fitness/guide/" className="readMoreLink">
+                    <button className="readMore">Read More</button>
+                </a>
+            </div>
+
+            {/* Heart Health Section */}
+            <div className="childContainer bounce-in-right">
+                <div className="imageContainer">
+                    <img
+                        src="/image/heart health.jpg"
+                        alt="Heart Health"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Heart Health</h1>
+                <p className="description">
+                    You can help prevent heart disease by following a heart-healthy lifestyle.
+                </p>
+                <a href="https://www.healthline.com/nutrition/heart-healthy-foods" className="readMoreLink">
+                    <button className="readMore">Read More</button>
+                </a>
+            </div>
+
+            {/* Diabetes Section */}
+            <div className="childContainer bounce-in-right">
+                <div className="imageContainer">
+                    <img
+                        src="/image/diabetes.jpg"
+                        alt="Diabetes Care"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Diabetes</h1>
+                <p className="description">
+                    Lose extra weight. Losing weight reduces the risk of diabetes.
+                </p>
+                <a href="https://diabetesjournals.org/care" className="readMoreLink">
+                    <button className="readMore">Read More</button>
+                </a>
+            </div>
+
+            {/* Heart Disease Section */}
+            <div className="childContainer bounce-in-right">
+                <div className="imageContainer">
+                    <img
+                        src="/image/heart disease.jpg"
+                        alt="Heart Disease"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Heart Disease</h1>
+                <p className="description">
+                    An enlarged heart means you have a condition that has increased the size of your heart.
+                </p>
+                <a href="https://www.mayoclinic.org/diseases-conditions/heart-disease/symptoms-causes/causes/2008195" className="readMoreLink">
+                    <button className="readMore">Read More</button>
+                </a>
+            </div>
+
+            {/* Additional Blog Titles */}
+            <div className="childContainer bounce-in-right">
+            <div className="imageContainer">
+                    <img
+                        src="/image/heart disease.jpg"
+                        alt="Heart Disease"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Blog Title</h1>
+                <p className="description">
+                    Example blog content for this section.
+                </p>
+               
+                <button className="readMore">Read More</button>
+            </div>
+
+            <div className="childContainer bounce-in-right">
+            <div className="imageContainer">
+                    <img
+                        src="/image/heart disease.jpg"
+                        alt="Heart Disease"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Blog Title</h1>
+                <p className="description">
+                    Sample description text for another blog.
+                </p>
+                <button className="readMore">Read More</button>
+            </div>
+
+            <div className="childContainer bounce-in-right">
+            <div className="imageContainer">
+                    <img
+                        src="/image/heart disease.jpg"
+                        alt="Heart Disease"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Blog Title</h1>
+                <p className="description">
+                    Blog section content here.
+                </p>
+                <button className="readMore">Read More</button>
+            </div>
+
+            <div className="childContainer bounce-in-right">
+            <div className="imageContainer">
+                    <img
+                        src="/image/heart disease.jpg"
+                        alt="Heart Disease"
+                        className="object-cover w-full h-30 sm:h-48 md:h-52 lg:h-56"
+                    />
+                </div>
+                <h1 className="title">Blog Title</h1>
+                <p className="description">
+                    Final sample blog content for the FAQ section.
+                </p>
+                <button className="readMore">Read More</button>
+            </div>
         </div>
-      </div>
-    </section>
-  );
+    );
 }

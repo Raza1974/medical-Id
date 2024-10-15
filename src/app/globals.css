@@ -22,7 +22,11 @@
   
   @layer utilities {
     .text-balance {
-      text-wrap: balance;
+      @supports (text-wrap: balance) {
+        .parentContainer {
+          text-wrap: balance;
+        }
+      }
 .parentContainer {
   /* ... previous code remains the same ... */
   display: flex;
@@ -113,6 +117,48 @@
     color: rgb(209, 159, 255);
   }
   
+  .childContainerInformation {
+    width: 250px;
+    height: 330px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 10px;
+    transition-duration: 0.5s;
+    border: 3px solid white;
+  }
+  
+  
+  .imageContainerInformation {
+    width: 570%;
+    height: 25px;
+    background-color: rgb(107, 50, 107);
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  
+  
+  /* Social icons */
+.social-icons {
+  display: flex;
+  justify-content: bottom;
+  align-items: center;
+  gap: 8px;
+  padding: 1px;
+}
+
+.social-icons a {
+  font-size: 10px;
+  color: #77b0ec; /* Bright yellow for contrast */
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2); /* Enlarge on hover */
+  color: greenyellow; /* Coral hover effect */
+  
+}
+
   @media only screen and (max-width: 599px) {
     .childContainer {
       width: 60%;
@@ -121,7 +167,7 @@
   
   @media only screen and (max-width: 450px) {
     .childContainer {
-      width: 90%;
+      width: 100%;
     }
   }
   
