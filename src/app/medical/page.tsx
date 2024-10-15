@@ -8,6 +8,7 @@ export default function Medical() {
       {/* Main Content - Data Entry Table */}
       <main className="flex-grow">
         <DataEntryTable />
+        
       </main>
 
      

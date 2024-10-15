@@ -20,8 +20,8 @@ export default function DataEntryTable() {
     }
   ]);
 
-  const [isEditable, setIsEditable] = useState(false); // Controls if inputs are editable
   const [password, setPassword] = useState('');
+  const [isAuthorized, setIsAuthorized] = useState(false); // State to check authorization
 
   function addRow() {
     const newRow = {
@@ -45,6 +45,15 @@ export default function DataEntryTable() {
     const updatedRows = rows.map(row => {
       if (row.id === id) {
         const updatedRow = { ...row, [field]: value };
+         // Add validation for BPS input
+         if (field === 'bps') {
+          const bpsValue = parseInt(value, 10);
+          if (bpsValue < 1 || bpsValue > 22) {
+              alert("BPS must be between 1 and 22");
+              return row; // Return unchanged row if validation fails
+          }
+      }
+
         if (field === 'billDate' || field === 'receiveDate') {
           const billDate = new Date(updatedRow.billDate);
           const receiveDate = new Date(updatedRow.receiveDate);
@@ -94,22 +103,23 @@ export default function DataEntryTable() {
     }
   };
 
-  const handlePasswordSubmit = () => {
+  // Handle password submission
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
     if (password === 'r1857') {
-      setIsEditable(true); // Enable editing if password is correct
+      setIsAuthorized(true); // Set authorization to true
     } else {
-      alert('Incorrect password. Please try again.');
+      alert('Incorrect password!');
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
       <header className="p-4 text-white bg-blue-600">
-        <div className="container flex items-center justify-between mx-auto">
-        </div>
+        <div className="container flex items-center justify-between mx-auto"></div>
       </header>
       <h1 className="text-xl font-bold">Data Entry Sheet</h1>
-        
+
       <main className="container flex-grow px-4 mx-auto my-8">
         <style jsx>{`
           @media print {
@@ -128,178 +138,164 @@ export default function DataEntryTable() {
           }
         `}</style>
 
-        {!isEditable && (
-          <div className="mb-4">
+        {!isAuthorized ? (
+          <form onSubmit={handlePasswordSubmit} className="mb-4">
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password to edit"
-              className="p-2 border border-gray-300"
+              placeholder="Enter password"
+              className="p-2 border rounded"
+              required
             />
-            <button
-              onClick={handlePasswordSubmit}
-              className="px-4 py-2 ml-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-            >
+            <button type="submit" className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
               Submit
             </button>
-          </div>
+          </form>
+        ) : (
+          <>
+            <div className="overflow-x-auto">
+              <table className="w-full border border-collapse border-gray-300 table-auto">
+                <thead>
+                  <tr>
+                    <th className="p-2 border border-gray-300">Sr.NO.</th>
+                    <th className="p-2 border border-gray-300">Date of bill</th>
+                    <th className="p-2 border border-gray-300">Date of receiving</th>
+                    <th className="p-2 border border-gray-300">Time Barred</th>
+                    <th className="p-2 border border-gray-300">Name</th>
+                    <th className="p-2 border border-gray-300">Designation</th>
+                    <th className="p-2 border border-gray-300">BPS</th>
+                    <th className="p-2 border border-gray-300">Department</th>
+                    <th className="p-2 border border-gray-300">Relation</th>
+                    <th className="p-2 border border-gray-300">Diseases</th>
+                    <th className="p-2 border border-gray-300">Demand</th>
+                    <th className="p-2 border border-gray-300">May Approved</th>
+                    <th className="p-2 border border-gray-300">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => (
+                    <tr key={row.id}>
+                      <td className="p-4 border border-gray-300">{row.id}</td>
+                      <td className="p-1 border border-gray-300">
+                        <input
+                          type="date"
+                          value={row.billDate}
+                          onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="date"
+                          value={row.receiveDate}
+                          onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">{row.timeBarred}</td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.name}
+                          onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.designation}
+                          onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="number"
+                          value={row.bps}
+                          min="1"
+                          max="22"
+                          onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.department}
+                          onChange={(e) => handleInputChange(row.id, 'department', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.relation}
+                          onChange={(e) => handleInputChange(row.id, 'relation', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.diseases}
+                          onChange={(e) => handleInputChange(row.id, 'diseases', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.demand}
+                          onChange={(e) => handleInputChange(row.id, 'demand', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.mayApproved}
+                          onChange={(e) => handleInputChange(row.id, 'mayApproved', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        <button
+                          onClick={() => removeRow(row.id)}
+                          className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button
+                onClick={addRow}
+                className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 mt-4"
+              >
+                Add Row
+              </button>
+              <button
+                onClick={printSheet}
+                className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mt-4 ml-4"
+              >
+                Print Sheet
+              </button>
+              <button
+                onClick={exportToCSV}
+                className="px-4 py-2 text-white bg-yellow-500 rounded hover:bg-yellow-600 mt-4 ml-4"
+              >
+                Export to CSV
+              </button>
+            </div>
+          </>
         )}
-
-        <div className="overflow-x-auto">
-          <table className="w-full border border-collapse border-gray-300 table-auto">
-            <thead>
-              <tr>
-                <th className="p-2 border border-gray-300">Sr.NO.</th>
-                <th className="p-2 border border-gray-300">Date of bill</th>
-                <th className="p-2 border border-gray-300">Date of receiving</th>
-                <th className="p-2 border border-gray-300">Time Barred</th>
-                <th className="p-2 border border-gray-300">Name</th>
-                <th className="p-2 border border-gray-300">Designation</th>
-                <th className="p-2 border border-gray-300">BPS</th>
-                <th className="p-2 border border-gray-300">Department</th>
-                <th className="p-2 border border-gray-300">Relation</th>
-                <th className="p-2 border border-gray-300">Diseases</th>
-                <th className="p-2 border border-gray-300">Demand</th>
-                <th className="p-2 border border-gray-300">May Approved</th>
-                <th className="p-2 border border-gray-300">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id}>
-                  <td className="p-2 border border-gray-300">{row.id}</td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="date"
-                      value={row.billDate}
-                      onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable} // Disable if not editable
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="date"
-                      value={row.receiveDate}
-                      onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">{row.timeBarred}</td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.name}
-                      onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.designation}
-                      onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="number"
-                      value={row.bps}
-                      onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.department}
-                      onChange={(e) => handleInputChange(row.id, 'department', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.relation}
-                      onChange={(e) => handleInputChange(row.id, 'relation', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.diseases}
-                      onChange={(e) => handleInputChange(row.id, 'diseases', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.demand}
-                      onChange={(e) => handleInputChange(row.id, 'demand', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <input
-                      type="text"
-                      value={row.mayApproved}
-                      onChange={(e) => handleInputChange(row.id, 'mayApproved', e.target.value)}
-                      className="p-1 border w-full"
-                      disabled={!isEditable}
-                    />
-                  </td>
-                  <td className="p-2 border border-gray-300">
-                    <button
-                      onClick={() => removeRow(row.id)}
-                      className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <button
-          onClick={addRow}
-          className="px-4 py-2 mt-4 text-white bg-green-500 rounded hover:bg-green-600"
-          disabled={!isEditable} // Disable if not editable
-        >
-          Add Row
-        </button>
-
-        <button
-          onClick={exportToCSV}
-          className="px-4 py-2 mt-4 ml-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Export to CSV
-        </button>
-        <button
-          onClick={printSheet}
-          className="px-4 py-2 mt-4 ml-2 text-white bg-gray-500 rounded hover:bg-gray-600"
-        >
-          Print Sheet
-        </button>
       </main>
 
-      <footer className="p-4 text-white bg-blue-600">
-        <div className="container mx-auto">
-          <p>&copy; 2024 S M Raza Rizvi. All rights reserved.</p>
-        </div>
-      </footer>
+      
     </div>
   );
 }
