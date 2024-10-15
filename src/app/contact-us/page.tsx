@@ -7,13 +7,16 @@ export default function Home() {
         alt="Contact Us"
         className="w-1/6 h-auto mx-auto"  // Reduced width to 50% and auto height, centered
         
-    
       />
+      <h1 className="text-2xl font-bold mb-1">Contact Us <hr></hr></h1>
+      <p className="text-lg text-center mb-1">
+                   OFFICE OF THE
+          		TOWN MUNICIPAL CORPORATION 
+                   (GADAP)
+<br></br>
 
-      <h1 className="text-4xl font-bold mb-2">Contact Us</h1>
-      <p className="text-lg text-center mb-4">
-        This is a simple Next.js application with Tailwind CSS for styling and Geist UI for components.
-      </p>
+        Main Super Highway, Damba Goth, Gadap Karachi  
+         </p>
       <div className="flex flex-col space-y-4">
         {/* WhatsApp Contact Option */}
         <a

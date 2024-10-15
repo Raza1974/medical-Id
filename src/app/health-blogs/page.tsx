@@ -1,6 +1,6 @@
-export default function FAQ() {
+export default function healthblog() {
     return (
-        <div className="parentContainer">
+        <div className="parentContainer" >
 
             {/* Fitness Section */}
             <div className="childContainer bounce-in-right">

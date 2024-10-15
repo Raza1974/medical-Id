@@ -1,6 +1,6 @@
 import Link from 'next/link'; // Ensure you're importing the Link component
 
-export default function healthblog() {
+export default function Faq() {
   return (
     <section className="flex items-center justify-center min-h-screen p-16 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
     <div>
@@ -12,6 +12,7 @@ export default function healthblog() {
               src="/image/health tips.jpg"      
               alt="Heart Health"
               className="object-cover w-full h-40"
+            
             />
           </div>
           <h2 className="text-xl font-semibold title">Eat Healthy</h2>

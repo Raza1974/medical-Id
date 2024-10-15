@@ -11,9 +11,9 @@ export default function Home() {
           alt="About"
           className="w-1/6 h-auto mx-auto"  // Reduced width to 50% and auto height, centered
         />
-        <h1 className="text-2xl font-bold ">About Us</h1>
+        <h1 className="text-2xl font-bold ">About-Us <hr></hr>
+        </h1>
         <p className="text-lg mt- ">
-          This is a simple Next.js application with Tailwind CSS for styling and Geist UI for components.
         </p>
         </div>
         <div className="flex flex-col space-y-4">

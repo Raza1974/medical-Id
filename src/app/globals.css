@@ -91,13 +91,13 @@
   }
   
   .title {
-    font-size: 12px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
   }
   
   .description {
-    font-size: 15px;
+    font-size: 12px;
   }
   
   .readMore {

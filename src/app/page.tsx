@@ -13,7 +13,7 @@ export default function Home() {
               alt="Heart Health"
               className="object-cover w-full h-40"
             />
-            <p> Chief Medical Officer </p>
+            <p> Office Superintendent </p>
       <h1> Town Municipal Corporation Gadap  District Malir Karachi  </h1>
       
           </div>
