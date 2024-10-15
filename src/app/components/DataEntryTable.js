@@ -20,6 +20,9 @@ export default function DataEntryTable() {
     }
   ]);
 
+  const [isEditable, setIsEditable] = useState(false); // Controls if inputs are editable
+  const [password, setPassword] = useState('');
+
   function addRow() {
     const newRow = {
       id: rows.length + 1,
@@ -91,8 +94,16 @@ export default function DataEntryTable() {
     }
   };
 
+  const handlePasswordSubmit = () => {
+    if (password === 'r1857') {
+      setIsEditable(true); // Enable editing if password is correct
+    } else {
+      alert('Incorrect password. Please try again.');
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+    <div className="flex flex-col min-h-screen bg-gray-100 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
       <header className="p-4 text-white bg-blue-600">
         <div className="container flex items-center justify-between mx-auto">
         </div>
@@ -116,6 +127,24 @@ export default function DataEntryTable() {
             }
           }
         `}</style>
+
+        {!isEditable && (
+          <div className="mb-4">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password to edit"
+              className="p-2 border border-gray-300"
+            />
+            <button
+              onClick={handlePasswordSubmit}
+              className="px-4 py-2 ml-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+            >
+              Submit
+            </button>
+          </div>
+        )}
 
         <div className="overflow-x-auto">
           <table className="w-full border border-collapse border-gray-300 table-auto">
@@ -146,6 +175,7 @@ export default function DataEntryTable() {
                       value={row.billDate}
                       onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable} // Disable if not editable
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -154,6 +184,7 @@ export default function DataEntryTable() {
                       value={row.receiveDate}
                       onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">{row.timeBarred}</td>
@@ -163,6 +194,7 @@ export default function DataEntryTable() {
                       value={row.name}
                       onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -171,6 +203,7 @@ export default function DataEntryTable() {
                       value={row.designation}
                       onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -179,6 +212,7 @@ export default function DataEntryTable() {
                       value={row.bps}
                       onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -187,6 +221,7 @@ export default function DataEntryTable() {
                       value={row.department}
                       onChange={(e) => handleInputChange(row.id, 'department', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -195,6 +230,7 @@ export default function DataEntryTable() {
                       value={row.relation}
                       onChange={(e) => handleInputChange(row.id, 'relation', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -203,6 +239,7 @@ export default function DataEntryTable() {
                       value={row.diseases}
                       onChange={(e) => handleInputChange(row.id, 'diseases', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -211,6 +248,7 @@ export default function DataEntryTable() {
                       value={row.demand}
                       onChange={(e) => handleInputChange(row.id, 'demand', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
@@ -219,14 +257,15 @@ export default function DataEntryTable() {
                       value={row.mayApproved}
                       onChange={(e) => handleInputChange(row.id, 'mayApproved', e.target.value)}
                       className="p-1 border w-full"
+                      disabled={!isEditable}
                     />
                   </td>
                   <td className="p-2 border border-gray-300">
                     <button
-                      className="px-2 py-1 text-white bg-red-500 rounded"
                       onClick={() => removeRow(row.id)}
+                      className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                     >
-                      Delete
+                      Remove
                     </button>
                   </td>
                 </tr>
@@ -234,28 +273,33 @@ export default function DataEntryTable() {
             </tbody>
           </table>
         </div>
+        <button
+          onClick={addRow}
+          className="px-4 py-2 mt-4 text-white bg-green-500 rounded hover:bg-green-600"
+          disabled={!isEditable} // Disable if not editable
+        >
+          Add Row
+        </button>
 
-        <div className="mt-4 space-x-4">
-          <button
-            className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
-            onClick={addRow}
-          >
-            Add Row
-          </button>
-          <button
-            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-            onClick={exportToCSV}
-          >
-            Export to CSV
-          </button>
-          <button
-            className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600"
-            onClick={printSheet}
-          >
-            Print
-          </button>
-        </div>
+        <button
+          onClick={exportToCSV}
+          className="px-4 py-2 mt-4 ml-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+        >
+          Export to CSV
+        </button>
+        <button
+          onClick={printSheet}
+          className="px-4 py-2 mt-4 ml-2 text-white bg-gray-500 rounded hover:bg-gray-600"
+        >
+          Print Sheet
+        </button>
       </main>
+
+      <footer className="p-4 text-white bg-blue-600">
+        <div className="container mx-auto">
+          <p>&copy; 2024 S M Raza Rizvi. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
