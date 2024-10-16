@@ -1,3 +1,8 @@
+
+
+import React from "react";
+
+
 import Link from "next/link";
 
 export default function Header() {
@@ -32,17 +37,17 @@ export default function Header() {
             </li>
             <li>
               <Link href="/medical" className="transition duration-300 hover:text-yellow-300" aria-label="Medical Reimbursement">
-                Medical Reimbursement
+                Reimbursement
               </Link>
             </li>
             <li>
               <Link href="/medical-info" className="transition duration-300 hover:text-yellow-300" aria-label="Medical Info">
-                Medical Info
+                Info
               </Link>
             </li>
             <li>
               <Link href="/health-blogs" className="transition duration-300 hover:text-yellow-300" aria-label="Health Blogs">
-                Health Blogs
+               Blogs
               </Link>
             </li>
             <li>

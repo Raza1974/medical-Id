@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
-      <div>
+      
         <img
           src="/image/about us.jpg"
           alt="About"
@@ -12,7 +12,7 @@ export default function Home() {
         <p className="text-lg mt-2">
           This is a simple Next.js application with Tailwind CSS for styling and Geist UI for components.
         </p>
-      </div>
+      
 
       {/* Social Icons placed before the footer */}
       <div className="social-icons  space-x-7 py-3 bg-white">
