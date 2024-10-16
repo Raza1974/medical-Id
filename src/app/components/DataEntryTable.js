@@ -16,7 +16,8 @@ export default function DataEntryTable() {
       relation: '',
       diseases: '',
       demand: '',
-      mayApproved: ''
+      mayApproved: '',
+      remarks: ''
     }
   ]);
 
@@ -36,7 +37,8 @@ export default function DataEntryTable() {
       relation: '',
       diseases: '',
       demand: '',
-      mayApproved: ''
+      mayApproved: '',
+      remarks: ''
     };
     setRows([...rows, newRow]); // Update state with new row
   }
@@ -45,15 +47,17 @@ export default function DataEntryTable() {
     const updatedRows = rows.map(row => {
       if (row.id === id) {
         const updatedRow = { ...row, [field]: value };
-         // Add validation for BPS input
-         if (field === 'bps') {
+
+        // Add validation for BPS input
+        if (field === 'bps') {
           const bpsValue = parseInt(value, 10);
           if (bpsValue < 1 || bpsValue > 22) {
-              alert("BPS must be between 1 and 22");
-              return row; // Return unchanged row if validation fails
+            alert("BPS must be between 1 and 22");
+            return row; // Return unchanged row if validation fails
           }
-      }
+        }
 
+        // Calculate Time Barred
         if (field === 'billDate' || field === 'receiveDate') {
           const billDate = new Date(updatedRow.billDate);
           const receiveDate = new Date(updatedRow.receiveDate);
@@ -111,6 +115,7 @@ export default function DataEntryTable() {
     } else {
       alert('Incorrect password!');
     }
+    setPassword(''); // Clear password field
   };
 
   return (
@@ -170,6 +175,7 @@ export default function DataEntryTable() {
                     <th className="p-2 border border-gray-300">Diseases</th>
                     <th className="p-2 border border-gray-300">Demand</th>
                     <th className="p-2 border border-gray-300">May Approved</th>
+                    <th className="p-2 border border-gray-300">Remarks</th>
                     <th className="p-2 border border-gray-300">Actions</th>
                   </tr>
                 </thead>
@@ -182,7 +188,7 @@ export default function DataEntryTable() {
                           type="date"
                           value={row.billDate}
                           onChange={(e) => handleInputChange(row.id, 'billDate', e.target.value)}
-                          className="p-1 border w-full"
+                          className="p-1 border w-full" // increase size of box
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
@@ -190,7 +196,7 @@ export default function DataEntryTable() {
                           type="date"
                           value={row.receiveDate}
                           onChange={(e) => handleInputChange(row.id, 'receiveDate', e.target.value)}
-                          className="p-1 border w-full"
+                          className="p-1 border w-full" // increase size of box
                         />
                       </td>
                       <td className="p-2 border border-gray-300">{row.timeBarred}</td>
@@ -199,7 +205,8 @@ export default function DataEntryTable() {
                           type="text"
                           value={row.name}
                           onChange={(e) => handleInputChange(row.id, 'name', e.target.value)}
-                          className="p-1 border w-24"
+                          className="p-1 border w-full" // increase size of box
+                          required
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
@@ -207,17 +214,17 @@ export default function DataEntryTable() {
                           type="text"
                           value={row.designation}
                           onChange={(e) => handleInputChange(row.id, 'designation', e.target.value)}
-                          className="p-1 border w-full"
+                          className="p-1 border w-full" // increase size of box
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
                         <input
                           type="number"
                           value={row.bps}
+                          onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
                           min="1"
                           max="22"
-                          onChange={(e) => handleInputChange(row.id, 'bps', e.target.value)}
-                          className="p-1 border w-12"
+                          className="p-1 border w-11" // increase size of box
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
@@ -261,9 +268,17 @@ export default function DataEntryTable() {
                         />
                       </td>
                       <td className="p-2 border border-gray-300">
+                        <input
+                          type="text"
+                          value={row.remarks}
+                          onChange={(e) => handleInputChange(row.id, 'remarks', e.target.value)}
+                          className="p-1 border w-full"
+                        />
+                      </td>
+                      <td className="p-2 border border-gray-300">
                         <button
+                          className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                           onClick={() => removeRow(row.id)}
-                          className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                         >
                           Remove
                         </button>
@@ -272,21 +287,23 @@ export default function DataEntryTable() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="flex justify-between mt-4">
               <button
+                className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
                 onClick={addRow}
-                className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 mt-4"
               >
                 Add Row
               </button>
               <button
+                className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
                 onClick={printSheet}
-                className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 mt-4 ml-4"
               >
                 Print Sheet
               </button>
               <button
+                className="px-4 py-2 text-white bg-yellow-500 rounded hover:bg-yellow-600"
                 onClick={exportToCSV}
-                className="px-4 py-2 text-white bg-yellow-500 rounded hover:bg-yellow-600 mt-4 ml-4"
               >
                 Export to CSV
               </button>
@@ -295,7 +312,9 @@ export default function DataEntryTable() {
         )}
       </main>
 
-      
+      <footer className="p-4 text-center text-white bg-blue-600">
+        © 2024 Your Company Name. All rights reserved.
+      </footer>
     </div>
   );
 }
