@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

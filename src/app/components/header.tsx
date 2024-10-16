@@ -1,21 +1,21 @@
-
-
+import Image from "next/image";
 import React from "react";
-
-
 import Link from "next/link";
 
 export default function Header() {
   return (
     <header className="p-4 sm:p-6 text-white bg-blue-300 shadow-md">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <img
-            src="/image/profile2.jpg"
-            alt="Profile Pic"
-            width={70}
-            className="border-2 border-white rounded-full sm:w-20"
-          />
+        <div className="flex items-center space-x-5">
+          <div className="border-2 border-white rounded-full sm:w-20">
+            <Image
+              src="/image/profile2.jpg"
+              alt="Profile Pic"
+              width={70}
+              height={70} // Added height property
+              className="rounded-full"
+            />
+          </div>
           <h1 className="text-lg sm:text-2xl font-bold">Medical Branch</h1>
         </div>
         <nav className="mt-4 sm:mt-0">
@@ -47,7 +47,7 @@ export default function Header() {
             </li>
             <li>
               <Link href="/health-blogs" className="transition duration-300 hover:text-yellow-300" aria-label="Health Blogs">
-               Blogs
+                Blogs
               </Link>
             </li>
             <li>
