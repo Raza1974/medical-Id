@@ -8,7 +8,7 @@ export default function Header() {
           <img
             src="/image/profile2.jpg"
             alt="Profile Pic"
-            width={60}
+            width={70}
             className="border-2 border-white rounded-full sm:w-20"
           />
           <h1 className="text-lg sm:text-2xl font-bold">Medical Branch</h1>
@@ -48,6 +48,11 @@ export default function Header() {
             <li>
               <Link href="/faq" className="transition duration-300 hover:text-yellow-300" aria-label="FAQ">
                 FAQ
+              </Link>
+            </li>
+            <li>
+              <Link href="/jobs" className="transition duration-300 hover:text-yellow-300" aria-label="Jobs">
+                JOBS
               </Link>
             </li>
           </ul>

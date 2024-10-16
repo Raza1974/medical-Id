@@ -1,26 +1,26 @@
 import Link from 'next/link'; // Ensure you're importing the Link component
 
 
-export default function Medical() {
+export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 ">
      
-    Medical Brach  Gadap Town Municipal Corporatior
-    
-    <div className="mb-4 text-center childContainer bounce-in-right">
-          <div className="imageContainerinformation">
+    <div className="mb-4 text-center childContainerInformation bounce-in-right ">
+   
+   
+      <div className="imageContainerInformation">
             <img
               src="/image/medical branch.jpg"      
               alt="Heart Health"
-              className="object-cover w-full h-40"
+              className="object-cover w-full h-52"
             />
-          </div>
-          <h2 className="text-xl font-semibold title">Serve Pepoles</h2>
-          <p className="description">
-           We are Serving Pepole of live in the vicinity of  Gadap Town Municipal Corporation Distrist Malir Karachi
-          </p>
+            <p> Office Superintendent </p>
+      <h1> Town Municipal Corporation Gadap  District Malir Karachi  </h1>
+      
+          
+    
+
           <Link href="/blogs/health-1">
-            <button className="px-4 py-2 text-white transition bg-blue-500 rounded readMore hover:bg-blue-600">
+            <button className="px-1 py-1 text-white transition bg-blue-500 rounded readMore hover:bg-blue-600">
               Read More
             </button>
           </Link>
@@ -28,4 +28,8 @@ export default function Medical() {
       
     </div>
   );
-}
+       
+              
+  }
+  
+

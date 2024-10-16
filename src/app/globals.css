@@ -120,7 +120,7 @@
   }
   
   .childContainerInformation {
-    width: 250px;
+    width: 400px;
     height: 330px;
     background-color: white;
     border-radius: 20px;
@@ -132,8 +132,8 @@
   
   
   .imageContainerInformation {
-    width: 570%;
-    height: 25px;
+    width: 330%;
+    height:210px;
     background-color: rgb(107, 50, 107);
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -163,13 +163,23 @@
 
   @media only screen and (max-width: 599px) {
     .childContainer {
-      width: 60%;
+      width: 90%;  
     }
+  .childContainerInformation {
+    width: 105px;
   }
-  
+    .imageContainerInformation {
+    width: 540%;
+  }}
   @media only screen and (max-width: 450px) {
     .childContainer {
-      width: 100%;
+      width: 60%;
+    }
+    .childContainerInformation {
+      width:100px;
+    }
+      .imageContainerInformation {
+      width: 540%;
     }
   }
   
